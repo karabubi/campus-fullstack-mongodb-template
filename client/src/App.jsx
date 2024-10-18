@@ -5,10 +5,12 @@ import "./App.css";
 
 function App() {
   const [users, setUsers] = useState([]);
+  const API_LINK = import.meta.env.VITE_API_LINK;
+  console.log(API_LINK);
 
   // Fetch users from the backend
   async function fetchUsers() {
-    const response = await fetch("http://localhost:3000/users");
+    const response = await fetch(`${API_LINK}/users`);
     if (!response.ok) {
       console.warn("Response is not OK!");
     }
@@ -22,7 +24,7 @@ function App() {
 
   // Function to handle adding a new user
   async function handleUserOnClick() {
-    const response = await fetch("http://localhost:3000/users", {
+    const response = await fetch(`${API_LINK}/users/`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
