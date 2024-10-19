@@ -1,17 +1,15 @@
-// /client/src/components/UserList.jsx
-import React from "react";
-
-function UserList({ users, handleDelete }) {
+function UserList({ users, handleSelectUser }) {
   return (
-    <div>
-      {users.map(({ _id, name, age }) => (
-        <div key={_id}>
-          <p>
-            {name} ({age}){" "}
-            <button onClick={() => handleDelete(_id)}>Delete</button>
-          </p>
-        </div>
-      ))}
+    <div className="user-list">
+      <h2>Select a User to Login</h2>
+      <select onChange={(e) => handleSelectUser(e.target.value)}>
+        <option value="">--Select User--</option>
+        {users.map(({ _id, name }) => (
+          <option key={_id} value={_id}>
+            {name}
+          </option>
+        ))}
+      </select>
     </div>
   );
 }
